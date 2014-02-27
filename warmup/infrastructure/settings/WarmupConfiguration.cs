@@ -27,6 +27,12 @@ namespace warmup.infrastructure.settings
             get { return (string) this["sourceControlWarmupLocation"]; }
         }
 
+        public bool SourceControlWarmupLocationIsValid
+        {
+            get { return Verifier.isValid((string)this["sourceControlWarmupLocation"]); }
+        }
+
+
         /// <summary>
         ///   The token to replace in the warmup templates. Not required, default value is "__NAME__"
         /// </summary>

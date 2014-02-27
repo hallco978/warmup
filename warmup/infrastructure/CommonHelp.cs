@@ -16,6 +16,13 @@ namespace warmup.infrastructure
                               WarmupConfiguration.settings.SourceControlType,
                               WarmupConfiguration.settings.SourceControlWarmupLocation
                 );
+            if (!WarmupConfiguration.settings.SourceControlWarmupLocationIsValid)
+            {
+
+                Console.WriteLine("----------");
+                Console.WriteLine("The Source Control Warmup Location is not Valid");
+                Console.WriteLine("Please ensure that '{0}' is accessible", WarmupConfiguration.settings.SourceControlWarmupLocation);
+            }
             Console.WriteLine("----------");
             Console.WriteLine("usage");
             Console.WriteLine("----------");

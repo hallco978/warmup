@@ -1,6 +1,5 @@
 using System;
 using System.Diagnostics;
-// using warmup.infrastructure.extractors;
 using warmup.infrastructure.settings;
 using System.IO;
 using System.Net;
@@ -19,7 +18,7 @@ namespace warmup.infrastructure.exporters
                 ? new TargetDir(Environment.CurrentDirectory)
                 : targetDir;
 
-            var gitSrcPath = TestPath(gitsrc);
+            var gitSrcPath = Verifier.TestPath(gitsrc);
 
             var psi = new ProcessStartInfo("cmd", string.Format(" /c git clone {0} {1}", gitSrcPath, destination.FullPath));
 
@@ -37,47 +36,16 @@ namespace warmup.infrastructure.exporters
                 error = p.StandardError.ReadToEnd();
             }
 
+            RemoveGitConfig(destination);
+
             Console.WriteLine(output);
             Console.WriteLine(error);
 
         }
 
-        private static string TestPath(string path)
+        private static void RemoveGitConfig(TargetDir destination)
         {
-            return new Uri(path).IsFile
-                ? Directory.Exists(path)
-                    ? path
-                    : AdjustedPath(path)
-                : isValid(path)
-                    ? path
-                    : AdjustedPath(path);
-        }
-
-        private static string AdjustedPath(string path)
-        {
-            return path.EndsWith(".git")
-                ? path
-                : path + ".git";
-        }
-
-        public static bool isValid(string url)
-        {
-            try
-            {
-                var urlReq = (HttpWebRequest)WebRequest.Create(url);
-                var urlRes = (HttpWebResponse)urlReq.GetResponse();
-                var sStream = urlRes.GetResponseStream();
-
-                string read = new StreamReader(sStream).ReadToEnd();
-                return true;
-
-            }
-            catch (Exception)
-            {
-                //Url not valid
-                return false;
-            }
-
+            Directory.Delete(path: Path.Combine(destination.FullPath, ".git"), recursive: true);
         }
 
         private static Uri NewUri(string baseUri, string relativeUri)
@@ -115,12 +83,12 @@ namespace warmup.infrastructure.exporters
             return Tuple.Create(Uri.TryCreate(baseUri, relativeUri, out ret), ret); 
         } 
 
-        public static void Clone(Uri sourceLocation, TargetDir target)
-        {
-        }
+        //public static void Clone(Uri sourceLocation, TargetDir target)
+        //{
+        //}
 
-        public static void Clone(string sourceLocation, TargetDir target)
-        {
-        }
+        //public static void Clone(string sourceLocation, TargetDir target)
+        //{
+        //}
     }
 }

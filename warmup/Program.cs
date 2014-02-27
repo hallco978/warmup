@@ -1,6 +1,7 @@
 ﻿using System;
 using warmup.commands;
 using warmup.infrastructure;
+using warmup.infrastructure.settings;
 
 namespace warmup
 {
@@ -8,7 +9,7 @@ namespace warmup
     {
         private static void Main(string[] args)
         {
-            if (args.Length == 0)
+            if (args.Length == 0) // || !WarmupConfiguration.settings.SourceControlWarmupLocationIsValid)
             {
                 CommonHelp.ShowHelp();
                 Environment.Exit(-1);

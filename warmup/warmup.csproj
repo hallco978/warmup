@@ -50,6 +50,7 @@
     <Compile Include="commands\AddTextReplacement.cs" />
     <Compile Include="commands\GenerateWarmup.cs" />
     <Compile Include="commands\ICommand.cs" />
+    <Compile Include="infrastructure\console\Verifier.cs" />
     <Compile Include="infrastructure\exporters\BaseExporter.cs" />
     <Compile Include="infrastructure\exporters\Folder.cs" />
     <Compile Include="infrastructure\exporters\Git.cs" />
