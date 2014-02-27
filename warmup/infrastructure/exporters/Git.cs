@@ -72,7 +72,7 @@ namespace warmup.infrastructure.exporters
                 return true;
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //Url not valid
                 return false;
