@@ -54,7 +54,7 @@
     <Compile Include="infrastructure\exporters\Folder.cs" />
     <Compile Include="infrastructure\exporters\Git.cs" />
     <Compile Include="infrastructure\exporters\GitHub.cs" />
-    <Compile Include="infrastructure\extractors\GitTemplateExtractor.cs" />
+    <None Include="infrastructure\extractors\GitTemplateExtractor.cs" />
     <Compile Include="infrastructure\exporters\IExporter.cs" />
     <Compile Include="infrastructure\CommandAttribute.cs" />
     <Compile Include="infrastructure\CommonHelp.cs" />
